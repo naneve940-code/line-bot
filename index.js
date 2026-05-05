@@ -4,8 +4,7 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 
-// 🔥 ใส่ Channel Access Token ตรงนี้
-const LINE_TOKEN = "YOUR_CHANNEL_ACCESS_TOKEN";
+const LINE_TOKEN = "ใส่_CHANNEL_ACCESS_TOKEN";
 
 app.post("/webhook", async (req, res) => {
   try {
@@ -24,15 +23,15 @@ app.post("/webhook", async (req, res) => {
           messages: [
             {
               type: "text",
-              text: "คุณพิมพ์ว่า: " + text
-            }
-          ]
+              text: "คุณพิมพ์ว่า: " + text,
+            },
+          ],
         },
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${LINE_TOKEN}`
-          }
+            Authorization: `Bearer ${LINE_TOKEN}`,
+          },
         }
       );
     }
@@ -48,6 +47,4 @@ app.get("/", (req, res) => {
   res.send("Bot is running ✔️");
 });
 
-app.listen(3000, () => {
-  console.log("Server started");
-});
+app.listen(3000, () => console.log("Server started"));
